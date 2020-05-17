@@ -1,0 +1,19 @@
+{
+  "name": "qrary-semantic-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atjhoendz/qrary-semantic-backend.git"
+  },
+  "author": "atjhoendz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atjhoendz/qrary-semantic-backend/issues"
+  },
+  "homepage": "https://github.com/atjhoendz/qrary-semantic-backend#readme"
+}
