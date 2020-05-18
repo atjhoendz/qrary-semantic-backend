@@ -1,0 +1,32 @@
+version: "3.7"
+services: 
+    semweb-service:
+        container_name: semweb-service
+        restart: always
+        build: ./
+        ports: 
+            - "3000:3000"
+        volumes:
+            - .:/app
+            - /app/node_modules
+        env_file: .env
+        networks:
+            - semweb-service-network
+    
+    jena-fuseki:
+        container_name: jena-fuseki
+        image: stain/jena-fuseki
+        restart: always
+        ports: 
+            - "3030:3030"
+        volumes:
+            - .:/fuseki
+        networks:
+            - semweb-service-network
+        environment: 
+            - ADMIN_PASSWORD=pw345
+
+networks:
+    semweb-service-network:
+        name: semweb-service-network
+    
