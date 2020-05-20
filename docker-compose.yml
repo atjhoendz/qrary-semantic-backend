@@ -12,19 +12,6 @@ services:
         env_file: .env
         networks:
             - semweb-service-network
-    
-    jena-fuseki:
-        container_name: jena-fuseki
-        image: stain/jena-fuseki
-        restart: always
-        ports: 
-            - "3030:3030"
-        volumes:
-            - .:/fuseki
-        networks:
-            - semweb-service-network
-        environment: 
-            - ADMIN_PASSWORD=pw345
 
 networks:
     semweb-service-network:

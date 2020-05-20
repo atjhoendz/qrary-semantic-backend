@@ -2,13 +2,3 @@ node_modules
 package-lock.json
 .idea
 .env
-# jena-fuseki file
-backups
-configuration
-databases
-system
-system_files
-templates
-config.ttl
-shiro.ini
-logs
