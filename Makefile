@@ -9,3 +9,6 @@ stop:
 restartDev:
 	@docker-compose down
 	@docker-compose up
+pushHeroku:
+	@heroku container:push web
+	@heroku container:release web

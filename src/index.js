@@ -1,10 +1,10 @@
 const express = require('express');
-const routes = require('./src/routes');
+const routes = require('./routes');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const config = {
-    PORT: process.env.APP_PORT || '3000',
+    PORT: process.env.PORT || '3000',
     ENV: process.env.NODE_ENV || 'development',
 }
 
