@@ -1,6 +1,6 @@
 const express = require('express');
-
 const router = express.Router();
+const { getAll } = require('../controllers/BookController');
 
 router.get('/', (req, res) => {
     res.status(200).json({
@@ -9,5 +9,7 @@ router.get('/', (req, res) => {
         data: 'Qrary API is Already Running...'
     });
 });
+
+router.get('/getall', getAll);
 
 module.exports = router;
