@@ -21,9 +21,9 @@ module.exports = {
                 message: 'Data semua buku berhasil didapatkan'
             });
         } catch (err) {
-            return res.status(500).json({
+            return res.status(200).json({
                 success: false,
-                status: 500,
+                status: 200,
                 data: '',
                 message: `Error: ${err.message}`
             });
