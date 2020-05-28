@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getAll } = require('../controllers/BookController');
+const { getBooks } = require('../controllers/BookController');
 
 router.get('/', (req, res) => {
     res.status(200).json({
@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/getall', getAll);
+router.get('/books', getBooks);
+router.get('/:isbn', getBooks);
 
 module.exports = router;

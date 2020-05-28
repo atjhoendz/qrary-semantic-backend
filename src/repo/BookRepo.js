@@ -8,15 +8,16 @@ const headers = {
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
 }
 
-exports.getAllBooks = async() => {
+exports.getBooks = async(param) => {
     const queryData = {
         query: `PREFIX data:<http://example.com/>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
         
-        SELECT ?issn ?judul ?bahasa ?jmlhal ?penerbit ?penulis ?penerjemah ?tanggalTerbit ?urlFoto
+        SELECT ?no ?isbn ?judul ?bahasa ?jmlhal ?penerbit ?penulis ?penerjemah ?tanggalTerbit ?urlFoto
         
         WHERE {
           ?any rdf:type data:book;
+               data:isbn ?isbn;
                data:judul ?judul;
                data:bahasa ?bahasa;
                data:jmlHal ?jmlhal;
@@ -25,8 +26,11 @@ exports.getAllBooks = async() => {
                data:penerjemah ?penerjemah;
                data:tanggalTerbit ?tanggalTerbit;
                data:urlFoto ?urlFoto;
-        }
-        LIMIT 25`
+          FILTER regex(?judul, "${param.judul ? param.judul : ''}", "i")
+          FILTER regex(?isbn, "${param.isbn ? param.isbn : ''}", "i")
+          FILTER regex(?penerbit, "${param.penerbit ? param.penerbit : ''}", "i")
+          FILTER regex(?penulis, "${param.penulis ? param.penulis : ''}", "i")
+        }`
     };
 
     try {
@@ -36,9 +40,8 @@ exports.getAllBooks = async() => {
             data: qs.stringify(queryData)
         });
 
-        return data;
+        return data.results;
     } catch (err) {
-        // console.log(err);
         return Promise.reject(err);
     }
 }

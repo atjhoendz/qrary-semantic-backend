@@ -2,24 +2,39 @@ const BookRepo = require('../repo/BookRepo');
 const BookFormatter = require('../utils/BookFormatter');
 
 module.exports = {
-    getAll: async(req, res) => {
+    getBooks: async(req, res) => {
         try {
-            const books = await BookRepo.getAllBooks();
+            let books = await BookRepo.getBooks(req.query);
 
-            let results = [];
+            if (!books.bindings.length) {
+                return res.status(200).json({
+                    success: true,
+                    status: 200,
+                    data: [],
+                    message: 'Data buku tidak ditemukan'
+                });
+            }
 
-            books.results.bindings.forEach(book => {
-                const formattedBook = BookFormatter(book);
+            books = books.bindings.map((course) => BookFormatter(course));
 
-                results.push(formattedBook);
-            });
+            if (req.params.isbn) {
 
-            return res.status(200).json({
-                success: true,
-                status: 200,
-                data: results,
-                message: 'Data semua buku berhasil didapatkan'
-            });
+                let book = books.filter((book) => { return book.isbn == req.params.isbn });
+
+                return res.status(200).json({
+                    success: true,
+                    status: 200,
+                    data: book[0],
+                    message: book.length ? 'Data buku berhasil didapatkan' : 'Data buku tidak ditemukan'
+                });
+            } else {
+                return res.status(200).json({
+                    success: true,
+                    status: 200,
+                    data: books,
+                    message: 'Data semua buku berhasil didapatkan'
+                });
+            }
         } catch (err) {
             return res.status(200).json({
                 success: false,

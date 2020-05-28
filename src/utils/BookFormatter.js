@@ -1,5 +1,6 @@
 module.exports = fn = data => {
     return {
+        "isbn": data.isbn.value,
         "judul": data.judul.value,
         "bahasa": data.bahasa.value,
         "jmlhal": data.jmlhal.value,
