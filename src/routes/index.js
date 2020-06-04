@@ -10,7 +10,9 @@ router.get('/', (req, res) => {
     });
 });
 
+// Endpoint mendapatkan data semua buku atau berdasarkan param atau query
 router.get('/books', getBooks);
+// Endpoint untuk mendapatkan data buku berdasarkan isbn
 router.get('/:isbn', getBooks);
 
 module.exports = router;
