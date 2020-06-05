@@ -20,20 +20,20 @@ exports.getBooks = async(param) => {
         SELECT ?no ?isbn ?judul ?bahasa ?jmlhal ?penerbit ?penulis ?penerjemah ?tanggalTerbit ?urlFoto
 
         WHERE {
-          ?any rdf:type data:book;
-               data:isbn ?isbn;
-               data:judul ?judul;
-               data:bahasa ?bahasa;
-               data:jmlHal ?jmlhal;
-               data:penerbit ?penerbit;
-               data:penulis ?penulis;
-               data:penerjemah ?penerjemah;
-               data:tanggalTerbit ?tanggalTerbit;
-               data:urlFoto ?urlFoto;
-          FILTER regex(?judul, "${param.judul ? param.judul : ''}", "i")
-          FILTER regex(?isbn, "${param.isbn ? param.isbn : ''}", "i")
-          FILTER regex(?penerbit, "${param.penerbit ? param.penerbit : ''}", "i")
-          FILTER regex(?penulis, "${param.penulis ? param.penulis : ''}", "i")
+            ?sub rdf:type data:book.
+            OPTIONAL {?sub data:isbn ?isbn.}
+            OPTIONAL {?sub data:judul ?judul.}
+            OPTIONAL {?sub data:bahasa ?bahasa.}
+            OPTIONAL {?sub data:jmlHal ?jmlhal.}
+            OPTIONAL {?sub data:penerbit ?penerbit.}
+            OPTIONAL {?sub data:penulis ?penulis.}
+            OPTIONAL {?sub data:penerjemah ?penerjemah.}
+            OPTIONAL {?sub data:tanggalTerbit ?tanggalTerbit.}
+            OPTIONAL {?sub data:urlFoto ?urlFoto.}
+            FILTER regex(?judul, "${param.judul ? param.judul : ''}", "i")
+            FILTER regex(?isbn, "${param.isbn ? param.isbn : ''}", "i")
+            FILTER regex(?penerbit, "${param.penerbit ? param.penerbit : ''}", "i")
+            FILTER regex(?penulis, "${param.penulis ? param.penulis : ''}", "i")
         }`
     };
 
