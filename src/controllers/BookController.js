@@ -40,7 +40,7 @@ module.exports = {
                     message: 'Data semua buku berhasil didapatkan'
                 });
             }
-        } catch (err) { //menangkap error jika fungsi tidak berhasil dijalankan
+        } catch (err) { //Menangkap error jika fungsi tidak berhasil dijalankan
             return res.status(200).json({
                 success: false,
                 status: 200,
